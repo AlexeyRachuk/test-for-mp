@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Begin Site Title
+================================================== -->
+<div class="container">
+	<div class="mainheading">
+		<h1 class="sitetitle">Посты</h1>
+		<p class="lead">
+			Здесь размещены посты для задания
+		</p>
+	</div>
+<!-- End Site Title
+================================================== -->
+
+	<!-- Begin Featured
+	================================================== -->
+	<section class="featured-posts">
+	<div class="section-title">
+		<h2><span>Посты</span></h2>
+	</div>
+	<div class="card-columns listfeaturedtag">
+
+		{% for post in post_list %}
+
+		<!-- begin post -->
+		<div class="card">
+			<div class="row">
+				<div class="col-md-5 wrapthumbnail">
+					<a href="post.html">
+						<div class="thumbnail" style="background-image:url({{ post.photo_prew.url }});">
+						</div>
+					</a>
+				</div>
+				<div class="col-md-7">
+					<div class="card-block">
+						<h2 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+						<h4 class="card-text">{{ post.text_prew | safe }}</h4>
+						<div class="metafooter">
+							<div class="wrapfooter">
+								<span class="meta-footer-thumb">
+								<a href="profile/"><img class="author-thumb" src="{{ post.user.image.url }}" alt="Sal"></a>
+								</span>
+								<span class="author-meta">
+								<span class="post-name"><a href="/profile">{{ post.user.first_name }}</a></span><br/>
+								<span class="post-date">{{ post.postdate }}</span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end post -->
+
+		{% endfor %}
+
+
+
+	</div>
+	</section>
+	<!-- End Featured
+	================================================== -->
+
+
+	{% endblock content %}

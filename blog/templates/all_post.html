@@ -1,0 +1,40 @@
+<!-- Begin Related
+================================================== -->
+<div class="graybg">
+    <div class="container">
+        <h3>Другие посты</h3>
+        <div class="row listrecent listrelated">
+
+            {% for all_post in all_posts %}
+            <!-- begin post -->
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="{{ all_post.get_absolute_url }}">
+                        <img class="img-fluid img-thumb" src="{{ all_post.photo_prew.url }}" alt="">
+                    </a>
+                    <div class="card-block">
+                        <h2 class="card-title"><a href="{{ all_post.get_absolute_url }}">{{ all_post.title }}</a>
+                        </h2>
+                        <div class="metafooter">
+                            <div class="wrapfooter">
+								<span class="meta-footer-thumb">
+								<a href="/profile"><img class="author-thumb"
+                                                           src="{{ all_post.user.image.url }}"
+                                                           alt="Sal"></a>
+								</span>
+                                <span class="author-meta">
+								<span class="post-name"><a href="/profile">{{ all_post.user.first_name }}</a></span><br/>
+								<span class="post-date">{{ all_post.postdate }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end post -->
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<!-- End Related Posts
+================================================== -->

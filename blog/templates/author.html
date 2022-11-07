@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Begin Top Author Page
+================================================== -->
+{% for profile in profile_all %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="mainheading">
+                <div class="row post-top-meta authorpage">
+                    <div class="col-md-10 col-xs-12">
+                        <h1>{{ profile.user.first_name }}</h1>
+                        <span class="author-description">Привет, {{ profile.user.first_name }}. Это страница для выполнения заданий.</span>
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <img class="author-thumb" src="{{ profile.user.image.url }}" alt="Sal">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Top Author Meta
+================================================== -->
+
+<!-- Begin Author Posts
+================================================== -->
+<div class="graybg authorpage">
+    <div class="container">
+        <div class="listrecent listrelated">
+
+            <!-- begin post -->
+            <div class="authorpostbox">
+                <h3>Карта:</h3>
+                <p>Сгенерируй карту через сервис яндекс-карт и добавь сюда. Ширина 100%, высота 500 px</p>
+                {{ profile.map | safe}}
+                <br><br>
+                <h3>Телефон:</h3>
+                <p>Оформи телефон по примеру тега
+                    <_a href="tel:Номера телефона с +7 слитно" _>Номер телефона
+                        <_
+                        /a>. Убрать «_»
+                </p>
+                {{ profile.tel | safe }}
+                <br><br>
+                <h3>Email</h3>
+                <p>Оформи почту по примеру тега
+                    <_a href="mailto:Email" _>Email
+                        <_
+                        /a>. Убрать «_»
+                </p>
+                {{ profile.email | safe }}
+            </div>
+            <!-- end post -->
+
+
+            <!-- begin post -->
+            <div class="authorpostbox">
+                <h3>Твои посты</h3>
+                {% for user_post in user_post_all %}
+                <div class="card">
+                    <a href="author.html">
+                        <img class="img-fluid img-thumb" src="assets/img/demopic/9.jpg" alt="">
+                    </a>
+                    <div class="card-block">
+                        <h2 class="card-title"><a href="{{ user_post.get_absolute_url }}">{{ user_post.title }}</a></h2>
+                        <h4 class="card-text">{{ user_post.text_prew | safe }}</h4>
+                        <div class="metafooter">
+                            <div class="wrapfooter">
+		              <span class="meta-footer-thumb">
+		              <a href="/profile"><img class="author-thumb"
+                                                 src="{{ user_post.user.image.url }}"
+                                                 alt="Sal"></a>
+		              </span>
+                                <span class="author-meta">
+		              <span class="post-name"><a href="/profile">{{ user_post.user.first_name }}</a></span><br/>
+		              <span class="post-date">{{ user_post.postdate }}</span>
+		              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- end post -->
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+<!-- End Author Posts
+================================================== -->
+{% endblock content %}

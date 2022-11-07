@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load tags %}
+<!-- Begin Article
+================================================== -->
+<div class="container">
+	<div class="row">
+
+		<!-- Begin Post -->
+		<div class="col-md-8 col-md-offset-2 col-xs-12">
+			<div class="mainheading">
+
+				<!-- Begin Top Meta -->
+				<div class="row post-top-meta">
+					<div class="col-md-2">
+						<a href="/profile"><img class="author-thumb" src="{{ post.user.image.url }}" alt="Sal"></a>
+					</div>
+					<div class="col-md-10">
+						<a class="link-dark" href="/profile">{{ post.user.first_name }}</a>
+						<br>
+						<span class="post-date">{{ post.postdate }}</span>
+					</div>
+				</div>
+				<!-- End Top Menta -->
+
+				<h1 class="posttitle">{{ post.title }}</h1>
+
+			</div>
+
+			<!-- Begin Post Content -->
+			<div class="article-post" style="padding-bottom:15px;">
+				{{ post.main_text | safe }}
+			</div>
+			<!-- End Post Content -->
+
+		</div>
+		<!-- End Post -->
+
+	</div>
+</div>
+<!-- End Article
+================================================== -->
+
+<div class="hideshare"></div>
+
+{% get_all_post %}
+{% endblock content %}
